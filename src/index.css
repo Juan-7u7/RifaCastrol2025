@@ -1,68 +1,328 @@
+/* src/index.css */
+
+/* --- TEMA CLARO (POR DEFECTO) --- */
 :root {
-  font-family: system-ui, Avenir, Helvetica, Arial, sans-serif;
-  line-height: 1.5;
-  font-weight: 400;
-
-  color-scheme: light dark;
-  color: rgba(255, 255, 255, 0.87);
-  background-color: #242424;
-
-  font-synthesis: none;
-  text-rendering: optimizeLegibility;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
+  --color-primary: #E4002B; /* Rojo Castrol */
+  --color-secondary: #009E49; /* Verde Castrol */
+  --color-background: #f4f4f5; /* Un gris muy claro para el fondo */
+  --color-surface: #ffffff; /* Blanco para las tarjetas y contenedores */
+  --color-text-primary: #18181b; /* Casi negro para el texto principal */
+  --color-text-secondary: #52525b; /* Gris para texto secundario */
+  --color-border: #e4e4e7; /* Borde sutil */
+  --shadow: 0 4px 6px -1px rgb(0 0 0 / 0.1), 0 2px 4px -2px rgb(0 0 0 / 0.1);
 }
 
-a {
-  font-weight: 500;
-  color: #646cff;
-  text-decoration: inherit;
-}
-a:hover {
-  color: #535bf2;
+/* --- TEMA OSCURO (SE ACTIVA AUTOMÁTICAMENTE) --- */
+@media (prefers-color-scheme: dark) {
+  :root {
+    --color-primary: #E4002B;
+    --color-secondary: #009E49;
+    --color-background: #18181b; /* Fondo oscuro */
+    --color-surface: #27272a; /* Superficies un poco más claras */
+    --color-text-primary: #f4f4f5; /* Texto principal claro */
+    --color-text-secondary: #a1a1aa; /* Texto secundario más tenue */
+    --color-border: #3f3f46;
+    --shadow: 0 4px 6px -1px rgb(255 255 255 / 0.05), 0 2px 4px -2px rgb(255 255 255 / 0.05);
+  }
 }
 
+/* --- ESTILOS GENERALES Y MINIMALISTAS --- */
 body {
   margin: 0;
-  display: flex;
-  place-items: center;
-  min-width: 320px;
-  min-height: 100vh;
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji";
+  background-color: var(--color-background);
+  color: var(--color-text-primary);
+  transition: background-color 0.3s ease, color 0.3s ease;
 }
 
-h1 {
-  font-size: 3.2em;
-  line-height: 1.1;
+#root {
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+  justify-content: center;
+  align-items: center;
+  padding: 1rem;
+}
+
+h1, h2, h3 {
+  font-weight: 700;
+  margin-top: 0;
+}
+
+/* --- COMPONENTES --- */
+.container {
+  width: 100%;
+  max-width: 800px;
+  background-color: var(--color-surface);
+  border-radius: 30px; /* Borde más redondeado */
+  overflow: hidden;
+  transition: all 0.3s ease;
+  
+  /* --- APLICA EL ESTILO NEUMÓRFICO --- */
+  /* Sombras para el tema oscuro (como tu ejemplo) */
+  box-shadow: 15px 15px 30px #131314,
+              -15px -15px 30px #2f2f31;
+}
+
+.header {
+  padding: 1.5rem;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  border-bottom: 1px solid var(--color-border);
+}
+
+.header-logo {
+  height: 100px;
+}
+
+.main-content {
+  padding: 2rem;
 }
 
 button {
+  background-color: var(--color-primary);
+  color: white;
+  border: none;
+  padding: 12px 20px;
   border-radius: 8px;
-  border: 1px solid transparent;
-  padding: 0.6em 1.2em;
-  font-size: 1em;
-  font-weight: 500;
-  font-family: inherit;
-  background-color: #1a1a1a;
   cursor: pointer;
-  transition: border-color 0.25s;
-}
-button:hover {
-  border-color: #646cff;
-}
-button:focus,
-button:focus-visible {
-  outline: 4px auto -webkit-focus-ring-color;
+  font-size: 1rem;
+  font-weight: 600;
+  transition: transform 0.2s ease, background-color 0.2s ease;
 }
 
-@media (prefers-color-scheme: light) {
-  :root {
-    color: #213547;
-    background-color: #ffffff;
+button:hover {
+  transform: translateY(-2px);
+  background-color: #c30024; /* Rojo más oscuro */
+}
+
+/* --- PÁGINA DEL CLIENTE --- */
+.cliente-page {
+  text-align: center;
+}
+
+.premio-card {
+  border: 1px solid var(--color-border);
+  padding: 1.5rem;
+  margin: 1.5rem auto;
+  border-radius: 8px;
+  max-width: 350px;
+}
+
+.qr-container {
+  background: white;
+  padding: 1rem;
+  display: inline-block;
+  border-radius: 8px;
+  box-shadow: var(--shadow);
+  margin-top: 1rem;
+}
+
+/* --- PÁGINA DEL ADMIN --- */
+.stats-bar {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+  gap: 1rem;
+  margin-bottom: 2rem;
+  text-align: center;
+}
+.stats-item {
+  background-color: var(--color-background);
+  padding: 1rem;
+  border-radius: 8px;
+}
+.stats-item strong {
+  display: block;
+  font-size: 1.5rem;
+  color: var(--color-primary);
+}
+
+.admin-layout {
+  display: flex;
+  flex-direction: column;
+  gap: 2rem;
+}
+
+#qr-reader {
+  width: 100%;
+  max-width: 300px;
+  margin: auto;
+  border-radius: 8px;
+  overflow: hidden;
+  border: 1px solid var(--color-border);
+}
+
+/* src/index.css - Reemplaza la regla existente */
+
+.vista-container select {
+  /* --- El reseteo clave para quitar el estilo del navegador --- */
+  appearance: none;
+  -webkit-appearance: none;
+
+  /* --- Estilos visuales minimalistas --- */
+  padding: 12px 40px 12px 15px; /* Más padding a la derecha para el ícono */
+  font-size: 1rem;
+  font-weight: 500;
+  border: 1px solid var(--color-border);
+  border-radius: 8px; /* <-- BORDES CURVOS */
+  background-color: var(--color-surface);
+  color: var(--color-text-primary);
+  cursor: pointer;
+  width: 100%;
+  transition: border-color 0.2s ease;
+
+  /* --- Añadir nuestra propia flecha (SVG adaptable) --- */
+  /* Este SVG usa 'currentColor', por lo que la flecha cambiará de color automáticamente con el tema */
+  background-image: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' fill='none' viewBox='0 0 20 20'%3e%3cpath stroke='currentColor' stroke-linecap='round' stroke-linejoin='round' stroke-width='1.5' d='M6 8l4 4 4-4'/%3e%3c/svg%3e");
+  background-position: right 0.75rem center;
+  background-repeat: no-repeat;
+  background-size: 1.5em;
+}
+
+.vista-container select:focus {
+  outline: none;
+  border-color: var(--color-primary);
+}
+
+.table, .list {
+  margin-top: 1rem;
+  max-height: 300px;
+  overflow-y: auto;
+}
+
+.list-item {
+  background-color: var(--color-background);
+  padding: 1rem;
+  border-radius: 8px;
+  margin-bottom: 0.5rem;
+}
+.table {
+  width: 100%;
+  border-collapse: collapse;
+}
+.table th, .table td {
+  padding: 0.75rem;
+  border-bottom: 1px solid var(--color-border);
+  text-align: left;
+}
+.table th {
+  color: var(--color-text-secondary);
+  font-size: 0.875rem;
+  text-transform: uppercase;
+}
+
+/* RESPONSIVIDAD */
+@media (min-width: 768px) {
+  .admin-layout {
+    flex-direction: row;
   }
-  a:hover {
-    color: #747bff;
+}
+/* src/index.css - AÑADIR AL FINAL */
+
+/* --- ESTILOS PARA FORMULARIOS (Login) --- */
+.form-group {
+  margin-bottom: 1.5rem;
+}
+
+.form-label {
+  display: block;
+  margin-bottom: 0.5rem;
+  font-weight: 600;
+  color: var(--color-text-secondary);
+  font-size: 0.875rem;
+}
+
+.form-input {
+  width: 100%;
+  padding: 12px;
+  font-size: 1rem;
+  /* La clave: el fondo es el mismo que el de la página */
+  background-color: var(--color-background); 
+  color: var(--color-text-primary);
+  border: 1px solid var(--color-border);
+  border-radius: 8px;
+  box-sizing: border-box; /* Importante para que el padding no afecte el ancho */
+  transition: border-color 0.2s ease, background-color 0.2s ease;
+}
+
+.form-input:focus {
+  outline: none;
+  border-color: var(--color-primary);
+}
+
+.form-button {
+  width: 100%;
+}
+
+.error-message {
+  color: var(--color-primary);
+  margin-top: 1rem;
+  text-align: center;
+  font-weight: 600;
+}
+/* src/index.css - AÑADIR AL FINAL */
+
+.confetti-canvas {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  z-index: 1000;
+  pointer-events: none; /* Permite hacer clic a través del canvas */
+}
+/* src/index.css - AÑADIR AL FINAL */
+
+/* --- Estilos para Iconos en Stats --- */
+.stats-item {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.stats-icon {
+  font-size: 1.75rem;
+  color: var(--color-primary);
+}
+
+/* --- Animación para Skeletons --- */
+@keyframes shimmer {
+  100% {
+    transform: translateX(100%);
   }
-  button {
-    background-color: #f9f9f9;
-  }
+}
+
+.skeleton {
+  display: inline-block;
+  height: 1em;
+  width: 100%;
+  position: relative;
+  overflow: hidden;
+  background-color: var(--color-background);
+  border-radius: 8px;
+}
+
+.skeleton::after {
+  position: absolute;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  transform: translateX(-100%);
+  background-image: linear-gradient(
+    90deg,
+    rgba(255, 255, 255, 0) 0,
+    rgba(255, 255, 255, 0.2) 20%,
+    rgba(255, 255, 255, 0.5) 60%,
+    rgba(255, 255, 255, 0)
+  );
+  animation: shimmer 2s infinite;
+  content: '';
+}
+
+.skeleton-list-item {
+  height: 60px; /* Altura similar a un item de la lista */
+  margin-bottom: 0.5rem;
 }

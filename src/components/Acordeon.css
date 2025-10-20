@@ -1,0 +1,43 @@
+/* src/components/Acordeon.css */
+.acordeon-item {
+    background-color: var(--color-background);
+    border-radius: 8px;
+    margin-bottom: 0.5rem;
+    border: 1px solid var(--color-border);
+    overflow: hidden;
+  }
+  
+  .acordeon-titulo {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    width: 100%;
+    padding: 1rem;
+    background-color: transparent;
+    color: var(--color-text-primary);
+    font-weight: 600;
+    text-align: left;
+  }
+  
+  .acordeon-titulo:hover {
+    background-color: rgba(0,0,0,0.05);
+    transform: none; /* Evita que el botón se mueva */
+  }
+  
+  .acordeon-icono {
+    width: 8px;
+    height: 8px;
+    border-right: 2px solid currentColor;
+    border-bottom: 2px solid currentColor;
+    transform: rotate(45deg);
+    transition: transform 0.3s ease;
+  }
+  
+  .acordeon-icono.open {
+    transform: rotate(-135deg);
+  }
+  
+  .acordeon-contenido {
+    padding: 0 1rem 1rem 1rem;
+    color: var(--color-text-secondary);
+  }
