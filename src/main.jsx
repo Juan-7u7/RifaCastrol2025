@@ -5,6 +5,7 @@ import App from './App.jsx'
 import { BrowserRouter } from 'react-router-dom'
 import './index.css'
 import { AuthProvider } from './AuthContext.jsx'; // <-- 1. Importa el proveedor
+import { SpeedInsights } from "@vercel/speed-insights/react"
 
 ReactDOM.createRoot(document.getElementById('root')).render(
   <React.StrictMode>
