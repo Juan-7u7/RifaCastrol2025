@@ -4,7 +4,7 @@ import ClientePage from './components/ClientePage';
 import LoginPage from './components/LoginPage';
 import AdminPage from './components/AdminPage';
 import ProtectedRoute from './components/ProtectedRoute'; // <-- 1. Importa el guardia
-// import { SpeedInsights } from "@vercel/speed-insights/react"
+
 function App() {
   return (
     <Routes>
@@ -21,7 +21,6 @@ function App() {
           </ProtectedRoute>
         }
       />
-      {/* <SpeedInsights/> */}
     </Routes>
   );
 }

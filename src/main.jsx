@@ -4,16 +4,17 @@ import ReactDOM from 'react-dom/client'
 import App from './App.jsx'
 import { BrowserRouter } from 'react-router-dom'
 import './index.css'
-import { AuthProvider } from './AuthContext.jsx'; // <-- 1. Importa el proveedor
-import { SpeedInsights } from "@vercel/speed-insights/react"
+import { AuthProvider } from './AuthContext.jsx';
+import { SpeedInsights } from "@vercel/speed-insights/react"; // <-- Bien importado
 
 ReactDOM.createRoot(document.getElementById('root')).render(
   <React.StrictMode>
     <BrowserRouter>
-      <AuthProvider> {/* <-- 2. Envuelve tu App con el proveedor */}
+      <AuthProvider>
         <App />
+        <SpeedInsights /> {/* <-- Colócalo aquí, junto a App */}
       </AuthProvider>
     </BrowserRouter>
-    <SpeedInsights/>
+    {/* <SpeedInsights/> Quítalo de aquí fuera */}
   </React.StrictMode>,
 )
